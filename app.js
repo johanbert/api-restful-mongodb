@@ -1,7 +1,7 @@
 // const { v1: uuidv1 } = require('uuid');
 const app = require('./config/server.config')
-const PORT = 3001
+const { PORT } = require('./config')
 
 app.listen(PORT, () => {
-    console.log('SERVER ON');
+    console.log(`SERVER ON ${PORT}`);
 })
