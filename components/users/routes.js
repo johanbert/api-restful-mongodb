@@ -1,14 +1,14 @@
 const express = require('express')
-const { getter } = require('./controllers')
+const { getUsers, addUser, editAll } = require('./controllers')
 const router = express.Router()
 
 
 router.route('/users')
-    .get(getter)
-    .post((req, res) => res.status(200).send('test POST'))
+    .get(getUsers)
+    .post(addUser)
 
 router.route('/users/:id')
-    .put()
+    .put(editAll)
     .patch()
     .delete()
 
