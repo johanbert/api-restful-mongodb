@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "ba2e79e2-a874-476b-aa17-d3817acd8624",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET USERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Estudiante Fantasma",
+							"type": "text"
+						},
+						{
+							"key": "edad",
+							"value": "21",
+							"type": "text"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-10-14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3001/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT USER",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Gasparin 22",
+							"type": "text"
+						},
+						{
+							"key": "pepito",
+							"value": "pepito",
+							"type": "text"
+						},
+						{
+							"key": "edad",
+							"value": "212",
+							"type": "text"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-10-15",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3001/api/v1/users/617b580ab127ee32c07065bb",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"617b580ab127ee32c07065bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT USER",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Gasper",
+							"type": "text"
+						},
+						{
+							"key": "pepito",
+							"value": "pepito",
+							"type": "text"
+						},
+						{
+							"key": "edad",
+							"value": "19",
+							"type": "text"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-10-25",
+							"type": "text"
+						},
+						{
+							"key": "_id",
+							"value": "617b580ab127ee32c0706565",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3001/api/v1/users/617b580ab127ee32c07065bb",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"617b580ab127ee32c07065bb"
+					],
+					"query": [
+						{
+							"key": "pepito",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE USER",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Gasper",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "pepito",
+							"value": "pepito",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "edad",
+							"value": "19",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "2020-10-25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "_id",
+							"value": "617b580ab127ee32c0706565",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3001/api/v1/users/617b5663460486a49598ca3d",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"617b5663460486a49598ca3d"
+					],
+					"query": [
+						{
+							"key": "pepito",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

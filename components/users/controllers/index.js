@@ -5,48 +5,68 @@ const userModel = require('../models');
 const User = mongoose.model('users', userModel);
 
 const getUsers = async(req, res) => {
-    const users = await User.find();
-    res.status(200).json(users)
+    try {
+        const users = await User.find();
+        res.status(200).json(users)
+    } catch (error) {
+        return res.status(500).json({ message: error })
+    }
 }
 
 const addUser = async(req, res) => {
-    req.body.fecha = new Date();
-    const user = new User(req.body)
-    await user.save()
+    try {
+        req.body.fecha = new Date();
+        const user = new User(req.body)
+        await user.save()
 
-    res.status(200).json({ ok: true })
+        res.status(200).json({ ok: true })
+    } catch (error) {
+        return res.status(500).json({ message: error })
+    }
 }
 
 const editAll = async(req, res) => {
-    const newBody = {}
-    let hasAllProperties = true
+    try {
+        const { body } = req;
+        const filter = { _id: mongoose.Types.ObjectId(req.params.id) };
+        const update = body;
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.id))
-        return res.status(404).json({ message: `invalid Format _id ${req.params.id}` })
+        const doc = await User.findOneAndUpdate(filter, update, { new: true });
 
-    // Validamos si tiene todas las propiedades del modelo userModel y hacemos reasignacion
-    for (key in req.body) {
-        console.log('key', key);
-        if (!userModel.hasOwnProperty(key)) {
-            return res.status(404).json({ message: `Your body properties doesn't allowed` })
-                // hasAllProperties = false
-                // break
-        }
-        newBody[key] = hasAllProperties ? req.body[key] : null
+        if (!doc)
+            return res.status(404).json({ message: `_id ${req.params.id} doesn't exists` })
+
+        res.status(200).json(doc)
+    } catch (error) {
+        return res.status(500).json({ message: error })
     }
-
-    // if (!hasAllProperties)
-
-
-    const filter = { _id: mongoose.Types.ObjectId(req.params.id) };
-    const update = req.body;
-
-    let doc = await User.findOneAndUpdate(filter, update, { new: true });
-
-    if (!doc)
-        return res.status(404).json({ message: `_id ${req.params.id} doesn't exists` })
-
-    res.status(200).json(doc)
 }
 
-module.exports = { getUsers, addUser, editAll }
+const editSomeone = async(req, res) => {
+    try {
+        const { body } = req;
+        const filter = { _id: mongoose.Types.ObjectId(req.params.id) };
+        const update = body;
+        delete body._id
+        const doc = await User.findOneAndUpdate(filter, update, { new: true });
+
+        if (!doc)
+            return res.status(404).json({ message: `_id ${req.params.id} doesn't exists` })
+
+        res.status(200).json(doc)
+    } catch (error) {
+        return res.status(500).json({ message: error })
+    }
+}
+
+const remove = async(req, res) => {
+    try {
+        const filter = { _id: mongoose.Types.ObjectId(req.params.id) };
+        let response = await User.remove(filter)
+        res.status(200).json({ OK: true, deletedCount: response.deletedCount })
+    } catch (error) {
+        return res.status(500).json({ message: error })
+    }
+}
+
+module.exports = { getUsers, addUser, editAll, editSomeone, remove }
