@@ -28,15 +28,15 @@ const editAll = async(req, res) => {
     for (key in req.body) {
         console.log('key', key);
         if (!userModel.hasOwnProperty(key)) {
-            console.log('hasAllPropertieshasAllProperties', hasAllProperties);
-            hasAllProperties = false
-            break
+            return res.status(404).json({ message: `Your body properties doesn't allowed` })
+                // hasAllProperties = false
+                // break
         }
         newBody[key] = hasAllProperties ? req.body[key] : null
     }
 
-    if (!hasAllProperties)
-        return res.status(404).json({ message: `Your body properties doesn't allowed` })
+    // if (!hasAllProperties)
+
 
     const filter = { _id: mongoose.Types.ObjectId(req.params.id) };
     const update = req.body;
